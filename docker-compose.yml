@@ -18,6 +18,8 @@ x-shared: &shared
     - EXECUTIONS_MODE=queue
     - QUEUE_BULL_REDIS_HOST=redis
     - QUEUE_HEALTH_CHECK_ACTIVE=true
+    - N8N_HOST=${IP}
+    - N8N_PORT=${PORT}
   links:
     - postgres
     - redis
@@ -62,7 +64,7 @@ services:
   n8n:
     <<: *shared
     ports:
-      - 5678:5678
+      - ${PORT}:5678
 
   n8n-worker:
     <<: *shared
